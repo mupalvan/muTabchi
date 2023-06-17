@@ -3,7 +3,8 @@ import os, logging,time,tracemalloc,asyncio
 from telethon import *
 from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import DeleteMessagesRequest
-
+from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
+from telethon.tl.functions.messages import ImportChatInviteRequest
 
 #----------------------------------- logging --------------------------------------------
 logging.basicConfig(
@@ -26,6 +27,17 @@ client = TelegramClient('session/'+phone_number, api_id, api_hash)
 client.start()
 
 #------------------------------ function ------------------------------------------------
+async def joinLeave(link, status):
+    if status==0:
+        await client(JoinChannelRequest(str(link)))
+    else:
+        await client(LeaveChannelRequest(str(link)))
+    
+async def getMember(link):
+    await joinLeave(link, 0)
+    async for user in client.iter_participants(str(link)):
+        print(user)
+
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
