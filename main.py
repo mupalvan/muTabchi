@@ -10,9 +10,14 @@ logging.basicConfig(
     format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
 tracemalloc.start()
 #---------------------------- set info acc ----------------------------------------------
-api_id = 1331656
-api_hash = '868c8254ed0fbc05a5ef0dab474ffdf9'
-phone_number = '+989330362596'
+f = open("setting.txt", "r")
+setting = []
+for x in f:
+  setting.append(x.split("=")[1]) 
+
+api_id = setting[0]
+api_hash = setting[1]
+phone_number = setting[2]
 #------------------------------ connect client ------------------------------------------
 if not os.path.exists('session'):
     os.makedirs('session')
