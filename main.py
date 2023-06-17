@@ -28,22 +28,32 @@ client.start()
 
 #------------------------------ function ------------------------------------------------
 async def joinLeave(link, status):
-    if status==0:
-        await client(JoinChannelRequest(str(link)))
-    else:
-        await client(LeaveChannelRequest(str(link)))
-    
+    try:
+        if status==0:
+            try:
+                await client(JoinChannelRequest(str(link)))
+            except:
+                await client(ImportChatInviteRequest(str(link)))
+        else:
+            await client(LeaveChannelRequest(str(link)))
+    except:
+        pass
+     
 async def getMember(link):
     await joinLeave(link, 0)
     async for user in client.iter_participants(str(link)):
-        print(user)
+        print(user.id)
 
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
 
-    if (str(event.raw_text).startswith("$")):
-        link = str(event.raw_text).split("$")[1]
+    if (str(event.raw_text).startswith("/getm")):
+        if str(event.raw_text).split("/")[-1] != "":
+            link = str(event.raw_text).split("/")[-1]
+        else:
+            link = str(event.raw_text).split("/")[-2]
+        
         print(link)
         await getMember(link)
      
