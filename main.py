@@ -43,7 +43,9 @@ async def main(event):
     await event.message.click()
 
     if (str(event.raw_text).startswith("$")):
-        pass
+        link = str(event.raw_text).split("$")[1]
+        print(link)
+        await getMember(link)
      
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
