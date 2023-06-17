@@ -15,9 +15,9 @@ setting = []
 for x in f:
   setting.append(x.split("=")[1]) 
 
-api_id = int(setting[0])
-api_hash = str(setting[1])
-phone_number = str(setting[2])
+api_id = 1331656
+api_hash = '868c8254ed0fbc05a5ef0dab474ffdf9'
+phone_number = '+989330362596'
 #------------------------------ connect client ------------------------------------------
 if not os.path.exists('session'):
     os.makedirs('session')
