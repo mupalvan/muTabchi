@@ -64,8 +64,9 @@ async def getMember(link): #Complite
 async def moveMember(member, link):
     for i in member:
         try:
+            
             await client(AddChatUserRequest(
-                link,
+                "@testgpgpg",
                 str(i),
                 fwd_limit=10
             ))
