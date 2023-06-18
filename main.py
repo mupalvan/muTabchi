@@ -33,7 +33,9 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
+                print('-------111111111----')
                 await client(ImportChatInviteRequest(str(link)))
+                print('------1111111-------')
             except:
                 await client(JoinChannelRequest(str(link)))
         else:
@@ -44,6 +46,7 @@ async def joinLeave(link, status):
 async def getMember(link, link2):
     try:
         await joinLeave(link, 0)
+        print('-----3333333333------')
         async for user in client.iter_participants(str(link2)):
             try:
                 print('ssssssssssssssssss')
@@ -61,6 +64,7 @@ async def getMember(link, link2):
 async def main(event):
     await event.message.click()
     if (str(event.raw_text).startswith("/getm")):
+        print('------------------')
         link2 = str(event.raw_text).split("/getm")[1]
         if str(event.raw_text).split("/")[-1] != "":
             link = str(event.raw_text).split("/")[-1]
