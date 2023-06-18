@@ -54,12 +54,16 @@ async def getMember(link):
     try:
         links = linkmaker(link)
         await joinLeave(links[0], 0)
-        users = await client.get_participants(links[0])
-        for user in users:
-            if user.username is not None:
-                print(user.username)
+        try:
+            users = await client.get_participants(links[0])
+            for user in users:
+                print(user)
+        except:
+            users = await client.get_participants(link[0])
+            for user in users:
+                print(user)
             # try:
-            #     # await client(InviteToChannelRequest(
+            #     # await client(InvitechatToChannelRequest(
             #     #     str(links[1]),
             #     #     [user.id]
             #     # ))
