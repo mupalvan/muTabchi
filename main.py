@@ -33,14 +33,11 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
-                print('join!')
                 await client(ImportChatInviteRequest(str(link)))
-                print('joinnnnnnnnn')
             except:
                 await client(JoinChannelRequest(str(link)))
         else:
             await client(LeaveChannelRequest(str(link)))
-        print('join')
     except:
         pass
 
@@ -50,7 +47,7 @@ async def getMember(link, link2, link3):
         async for user in client.iter_participants(str(link2)):
             try:
                 await client(InviteToChannelRequest(
-                    setattr(link3),
+                    str(link3),
                     [user.id]
                 ))
                 print("add {}".format(user.id))
