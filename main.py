@@ -68,8 +68,8 @@ async def moveMember(member, link, status):
                 try:
                     print(link)
                     await client(InviteToChannelRequest(
-                        channel=link,
-                        users=[int(i)]
+                        channel=str(link),
+                        users=[i]
                     ))
                 except:
                     pass
