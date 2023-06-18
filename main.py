@@ -66,7 +66,8 @@ async def moveMember(member, link):
         try:
             await client(AddChatUserRequest(
                 link,
-                str(i)
+                str(i),
+                fwd_limit=10
             ))
             print("add {}".format(member))
 
