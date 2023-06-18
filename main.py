@@ -33,9 +33,7 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
-                print('-------111111111----')
                 await client(ImportChatInviteRequest(str(link)))
-                print('------1111111-------')
             except:
                 await client(JoinChannelRequest(str(link)))
         else:
@@ -43,20 +41,23 @@ async def joinLeave(link, status):
     except:
         pass
 
-async def getMember(link, link2):
+async def getMember(link, link2, link3):
     try:
         await joinLeave(link, 0)
-        print('-----3333333333------')
         async for user in client.iter_participants(str(link2)):
             try:
-                print('ssssssssssssssssss')
                 await client(InviteToChannelRequest(
-                    '@testgpgpg',
+                    link3,
                     [user.id]
                 ))
                 print("add {}".format(user.id))
-            except:
-                print("not {}".format(user.id))
+            except Exception as e:
+                if (e.__class__.__name__ == "FloodWaitError"):
+                    print('sleep', e.seconds)
+                    await asyncio.sleep(e.seconds + 10)
+                    continue
+                else:
+                    continue
     except:
         pass
 
@@ -64,14 +65,14 @@ async def getMember(link, link2):
 async def main(event):
     await event.message.click()
     if (str(event.raw_text).startswith("/getm")):
-        print('------------------')
         link2 = str(event.raw_text).split("/getm")[1]
         if str(event.raw_text).split("/")[-1] != "":
             link = str(event.raw_text).split("/")[-1]
         else:
             link = str(event.raw_text).split("/")[-2]
-        
-        await getMember(link, link2)
+        link3 = str(event.raw_text).split(" ")[2]
+        print(link3)
+        await getMember(link, link2, link3)
      
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
