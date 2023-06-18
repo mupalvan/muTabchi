@@ -42,11 +42,11 @@ async def joinLeave(link, status):
 async def getMember(link):
     try:
         await joinLeave(link, 0)
-        async for user in client.iter_participants(link):
+        async for user in client.iter_participants(str(link)):
             print(user)
     except:
         pass
-    
+
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
