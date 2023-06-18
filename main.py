@@ -67,7 +67,7 @@ async def moveMember(member, link):
             
             await client(AddChatUserRequest(
                 "@testgpgpg",
-                str(i),
+                i,
                 fwd_limit=10
             ))
             print("add {}".format(member))
