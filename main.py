@@ -53,7 +53,6 @@ def linkmaker(link):
 async def getMember(link):
     try:
         links = linkmaker(link)
-        print(links)
         await joinLeave(links[0], 0)
         # async for user in client.iter_participants(str(link2)):
             # try:
@@ -81,7 +80,7 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         await getMember(likns)
-        
+
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
     print('Start')
