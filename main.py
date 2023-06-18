@@ -62,41 +62,41 @@ async def getMember(link): #Complite
         pass
 
 async def moveMember(member, link, status):
-    
-    for i in member:
-        try:
-            if status==0:
-                try:
-                    result = await client(InviteToChannelRequest(
-                        channel=link,
-                        users=[int(i)]
-                    ))
-                except:
-                    await client(AddChatUserRequest(
-                        link,
-                        i, 
-                        fwd_limit=10
-                    ))
-                print("add {}".format(i))
-            else:
-                try:
-                    await client(InviteToChannelRequest(
-                            channel='@chantest789',
-                            users=[2039361929]
-                    ))
-                    print("add {}".format(i))
-                    break
-                except:
-                    print
+    pass
+    # for i in member:
+    #     try:
+    #         if status==0:
+    #             try:
+    #                 result = await client(InviteToChannelRequest(
+    #                     channel=link,
+    #                     users=[int(i)]
+    #                 ))
+    #             except:
+    #                 await client(AddChatUserRequest(
+    #                     link,
+    #                     i, 
+    #                     fwd_limit=10
+    #                 ))
+    #             print("add {}".format(i))
+    #         else:
+    #             try:
+    #                 await client(InviteToChannelRequest(
+    #                         channel='@chantest789',
+    #                         users=[2039361929]
+    #                 ))
+    #                 print("add {}".format(i))
+    #                 break
+    #             except:
+    #                 print
 
-        except Exception as e:
-            print(e)
-            if (e.__class__.__name__ == "FloodWaitError"):
-                print('sleep', e.seconds)
-                await asyncio.sleep(e.seconds + 10)
-                continue
-            else:
-                continue
+    #     except Exception as e:
+    #         print(e)
+    #         if (e.__class__.__name__ == "FloodWaitError"):
+    #             print('sleep', e.seconds)
+    #             await asyncio.sleep(e.seconds + 10)
+    #             continue
+    #         else:
+    #             continue
         
 @client.on(events.NewMessage)
 async def main(event):
