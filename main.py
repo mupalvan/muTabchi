@@ -65,18 +65,18 @@ async def moveMember(member, link):
     
     for i in member:
         try:
-            # try:
-            #     print(link)
-            #     result = client(InviteToChannelRequest(
-            #         channel='8IqNcm4RvutmNDVk',
-            #         users=[int(i)]
-            #     ))
-            # except:
-            await client(AddChatUserRequest(
-                '8IqNcm4RvutmNDVk',
-                int(i),
-                fwd_limit=10
-            ))
+            try:
+                print(link)
+                result = client(InviteToChannelRequest(
+                    channel='8IqNcm4RvutmNDVk',
+                    users=[int(i)]
+                ))
+            except:
+                await client(AddChatUserRequest(
+                    -1001666697902,
+                    int(i), 
+                    fwd_limit=10
+                ))
             print("add {}".format(i))
 
         except Exception as e:
@@ -96,14 +96,8 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
-        chat_id = event
-        print('\n')
-        print('\n')
-        print('\n')
-        print('\n')
-        print(chat_id)
-        # links = linkmaker(likns)
-        # await moveMember(members, links[1])
+        links = linkmaker(likns)
+        await moveMember(members, links[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
