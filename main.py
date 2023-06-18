@@ -5,6 +5,8 @@ from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import DeleteMessagesRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
+from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.messages import AddChatUserReques
 
 #----------------------------------- logging --------------------------------------------
 logging.basicConfig(
@@ -44,7 +46,10 @@ async def getMember(link, link2):
         await joinLeave(link, 0)
         async for user in client.iter_participants(str(link2)):
             try:
-                print(user.id)
+                await client(InviteToChannelRequest(
+                    '@testgpgpg',
+                    [user.id]
+                ))
             except:
                 pass
     except:
