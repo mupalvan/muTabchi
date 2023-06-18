@@ -41,8 +41,8 @@ async def joinLeave(link, status):
 
 async def getMember(link):
     await joinLeave(link, 0)
-    for user in client.iter_participants(str(link)):
-        print(user.id)
+    async for user in client.iter_participants(link):
+        print(user)
 
 @client.on(events.NewMessage)
 async def main(event):
