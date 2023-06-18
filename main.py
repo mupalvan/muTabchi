@@ -66,6 +66,7 @@ async def moveMember(member, link, status):
         try:
             if status==0:
                 try:
+                    print(link)
                     await client(InviteToChannelRequest(
                         channel=link,
                         users=[int(i)]
