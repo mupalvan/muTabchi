@@ -43,8 +43,10 @@ async def getMember(link, link2):
     try:
         await joinLeave(link, 0)
         async for user in client.iter_participants(str(link2)):
-            print(user.id)
-
+            try:
+                print(user.id)
+            except:
+                pass
     except:
         pass
 
