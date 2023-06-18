@@ -54,7 +54,7 @@ async def getMember(link):
     try:
         links = linkmaker(link)
         await joinLeave(links[0], 0)
-        async for user in client.iter_participants(str(link[0])):
+        async for user in client.get_participants(str(link[0])):
             try:
                 # await client(InviteToChannelRequest(
                 #     str(links[1]),
