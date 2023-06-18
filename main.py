@@ -39,11 +39,12 @@ async def joinLeave(link, status):
     except:
         pass
 
-async def getMember(link,l):
+async def getMember(link, link2):
     try:
         await joinLeave(link, 0)
-        async for user in client.iter_participants(str(l)):
-            print(user)
+        async for user in client.iter_participants(str(link2)):
+            print(user.id)
+
     except:
         pass
 
@@ -51,16 +52,13 @@ async def getMember(link,l):
 async def main(event):
     await event.message.click()
     if (str(event.raw_text).startswith("/getm")):
-        links = str(event.raw_text).split("/getm")[1]
-        print(links)
-
+        link2 = str(event.raw_text).split("/getm")[1]
         if str(event.raw_text).split("/")[-1] != "":
             link = str(event.raw_text).split("/")[-1]
         else:
             link = str(event.raw_text).split("/")[-2]
         
-        print(link)
-        await getMember(link, links)
+        await getMember(link, link2)
      
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
