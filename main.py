@@ -64,18 +64,18 @@ async def getMember(link): #Complite
 async def moveMember(member, link):
     for i in member:
         try:
-            try:
-                print(link)
-                result = client(InviteToChannelRequest(
-                    channel='8IqNcm4RvutmNDVk',
-                    users=[int(i)]
-                ))
-            except:
-                await client(AddChatUserRequest(
-                    '8IqNcm4RvutmNDVk',
-                    int(i),
-                    fwd_limit=10
-                ))
+            # try:
+            #     print(link)
+            #     result = client(InviteToChannelRequest(
+            #         channel='8IqNcm4RvutmNDVk',
+            #         users=[int(i)]
+            #     ))
+            # except:
+            await client(AddChatUserRequest(
+                '8IqNcm4RvutmNDVk',
+                int(i),
+                fwd_limit=10
+            ))
             print("add {}".format(i))
 
         except Exception as e:
