@@ -57,11 +57,13 @@ async def getMember(link):
         try:
             users = await client.get_participants(links[0])
             for user in users:
-                print(user)
+                print(user.id)
+            
         except:
+            print("----------------")
             users = await client.get_participants(link[0])
             for user in users:
-                print(user)
+                print(user.id)
             # try:
             #     # await client(InvitechatToChannelRequest(
             #     #     str(links[1]),
