@@ -66,10 +66,9 @@ async def moveMember(member, link):
     for i in member:
         try:
             try:
-                print(link)
                 result = client(InviteToChannelRequest(
-                    channel=1001666697902,
-                    users=[int(i)]
+                    channel=-1001666697902,
+                    users=[i]
                 ))
             except:
                 await client(AddChatUserRequest(
