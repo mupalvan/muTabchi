@@ -67,12 +67,12 @@ async def moveMember(member, link):
         try:
             try:
                 result = await client(InviteToChannelRequest(
-                    channel=1001666697902,
+                    channel=link,
                     users=[int(i)]
                 ))
             except:
                 await client(AddChatUserRequest(
-                    1001666697902,
+                    link,
                     i, 
                     fwd_limit=10
                 ))
@@ -96,7 +96,7 @@ async def main(event):
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
         links = linkmaker(likns)
-        await moveMember(members, links[1])
+        await moveMember(members, likns[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
