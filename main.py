@@ -29,7 +29,7 @@ client = TelegramClient('session/'+phone_number, api_id, api_hash)
 client.start()
 
 #------------------------------ function ------------------------------------------------
-async def joinLeave(link, status):
+async def joinLeave(link, status): #Complite
     try:
         if status==0:
             try:
@@ -41,7 +41,7 @@ async def joinLeave(link, status):
     except:
         pass
 
-def linkmaker(link):
+def linkmaker(link): #Complite
     links = []
     for i in link:
         try:
@@ -50,7 +50,7 @@ def linkmaker(link):
             links.append(str(i).split("/")[-1])
     return links
 
-async def getMember(link):
+async def getMember(link): #Complite
     try:
         links = linkmaker(link)
         await joinLeave(links[0], 0)
@@ -61,6 +61,24 @@ async def getMember(link):
     except:
         pass
 
+async def moveMember(member, link):
+    for i in member:
+        try:
+            await client(AddChatUserRequest(
+                link,
+                str(i)
+            ))
+            print("add {}".format(member))
+
+        except Exception as e:
+            print('exc')
+            if (e.__class__.__name__ == "FloodWaitError"):
+                print('sleep', e.seconds)
+                await asyncio.sleep(e.seconds + 10)
+                continue
+            else:
+                continue
+        
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
@@ -68,9 +86,11 @@ async def main(event):
         likns = ['','']
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
-        await getMember(likns)
+        members = await getMember(likns)
+        await moveMember(members, likns[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
     print('Start')
 client.run_until_disconnected()
+
