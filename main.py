@@ -76,7 +76,7 @@ async def moveMember(member, link):
                     int(i),
                     fwd_limit=10
                 ))
-            print("add {}".format(member))
+            print("add {}".format(i))
 
         except Exception as e:
             print(e)
