@@ -62,12 +62,15 @@ async def getMember(link): #Complite
         pass
     
 def addMemberToDatabase(id): #Complite
-    conn = sqlite3.connect('users.db')
-    conn.execute("INSERT INTO member (id) \
-        VALUES ({})".format(id));
-    conn.commit()
-    conn.close()
-
+    try:
+        conn = sqlite3.connect('users.db')
+        conn.execute("INSERT INTO member (id) \
+            VALUES ({})".format(id));
+        conn.commit()
+        conn.close()
+    except:
+        pass
+    
 async def moveMember(member, link, status):
     for i in member:
         try:
