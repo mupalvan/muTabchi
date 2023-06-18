@@ -61,23 +61,34 @@ async def getMember(link): #Complite
     except:
         pass
 
-async def moveMember(member, link):
+async def moveMember(member, link, status):
     
     for i in member:
         try:
-            try:
-                result = await client(InviteToChannelRequest(
-                    channel=link,
-                    users=[int(i)]
-                ))
-            except:
-                await client(AddChatUserRequest(
-                    link,
-                    i, 
-                    fwd_limit=10
-                ))
-            print("add {}".format(i))
-
+            if status==0:
+                try:
+                    result = await client(InviteToChannelRequest(
+                        channel=link,
+                        users=[int(i)]
+                    ))
+                except:
+                    await client(AddChatUserRequest(
+                        link,
+                        i, 
+                        fwd_limit=10
+                    ))
+                print("add {}".format(i))
+            else:
+                print(i)
+                try:
+                    await client(InviteToChannelRequest(
+                            channel='@chantest789',
+                            users=[i]
+                    ))
+                    print("add {}".format(i))
+                except:
+                    pass
+                
         except Exception as e:
             print(e)
             if (e.__class__.__name__ == "FloodWaitError"):
@@ -96,7 +107,7 @@ async def main(event):
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
         links = linkmaker(likns)
-        await moveMember(members, likns[1])
+        await moveMember(members, likns[1], 1)
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
