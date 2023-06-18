@@ -50,6 +50,7 @@ async def getMember(link, link2):
                     '@testgpgpg',
                     [user.id]
                 ))
+                print("add {}".format(user.id))
             except:
                 pass
     except:
