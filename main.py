@@ -13,11 +13,6 @@ logging.basicConfig(
     format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
 tracemalloc.start()
 #---------------------------- set info acc ----------------------------------------------
-f = open("setting.txt", "r")
-setting = []
-for x in f:
-  setting.append(x.split("=")[1]) 
-
 api_id = 1331656
 api_hash = '868c8254ed0fbc05a5ef0dab474ffdf9'
 phone_number = '+989923162636'
@@ -70,7 +65,7 @@ def addMemberToDatabase(id): #Complite
         conn.close()
     except:
         pass
-    
+
 async def moveMember(member, link, status):
     for i in member:
         try:
