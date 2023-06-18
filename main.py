@@ -73,7 +73,7 @@ async def moveMember(member, link):
             #     ))
             # except:
             await client(AddChatUserRequest(
-                -1001666697902,
+                1001666697902,
                 i, 
                 fwd_limit=10
             ))
