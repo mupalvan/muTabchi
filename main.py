@@ -88,7 +88,7 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
-        links = linkmaker(links)
+        links = linkmaker(likns)
         await moveMember(members, links[1])
 
 #--------------------------------- check connect client ----------------------------------
