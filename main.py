@@ -5,7 +5,7 @@ from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import DeleteMessagesRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.channels import InviteToChannelRequest 
 from telethon.tl.functions.messages import AddChatUserRequest
 
 #----------------------------------- logging --------------------------------------------
@@ -66,7 +66,7 @@ async def moveMember(member, link):
         try:
             try:
                 print(link)
-                result = client(functions.channels.InviteToChannelRequest(
+                result = client(InviteToChannelRequest(
                     channel='8IqNcm4RvutmNDVk',
                     users=[int(i)]
                 ))
