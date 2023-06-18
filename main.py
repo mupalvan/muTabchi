@@ -55,10 +55,8 @@ async def getMember(link):
         links = linkmaker(link)
         await joinLeave(links[0], 0)
         async for user in client.iter_participants(link[0], limit=100):
-            if user:
-                print(user.id)
-            else:
-                continue
+            print(user.id)
+        print("Done")
             # try:
             #     # await client(InvitechatToChannelRequest(
             #     #     str(links[1]),
