@@ -6,7 +6,7 @@ from telethon.tl.functions.channels import DeleteMessagesRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.channels import InviteToChannelRequest
-from telethon.tl.functions.messages import AddChatUserReques
+from telethon.tl.functions.messages import AddChatUserRequest
 
 #----------------------------------- logging --------------------------------------------
 logging.basicConfig(
