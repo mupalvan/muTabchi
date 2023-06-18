@@ -71,7 +71,7 @@ async def moveMember(member, link):
             print("add {}".format(member))
 
         except Exception as e:
-            print('exc')
+            print(e)
             if (e.__class__.__name__ == "FloodWaitError"):
                 print('sleep', e.seconds)
                 await asyncio.sleep(e.seconds + 10)
