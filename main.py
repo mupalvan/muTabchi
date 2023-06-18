@@ -79,16 +79,15 @@ async def moveMember(member, link, status):
                     ))
                 print("add {}".format(i))
             else:
-                print(i)
                 try:
                     await client(InviteToChannelRequest(
                             channel='@chantest789',
-                            users=['2039361929']
+                            users=["@sisoc0"]
                     ))
                     print("add {}".format(i))
                     break
                 except:
-                    pass
+                    print(i)
 
         except Exception as e:
             print(e)
