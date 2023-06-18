@@ -72,7 +72,7 @@ async def moveMember(member, link):
                 ))
             except:
                 await client(AddChatUserRequest(
-                    "@testgpgpg",
+                    link,
                     int(i),
                     fwd_limit=10
                 ))
