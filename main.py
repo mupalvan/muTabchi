@@ -33,11 +33,14 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
+                print('join!')
                 await client(ImportChatInviteRequest(str(link)))
+                print('joinnnnnnnnn')
             except:
                 await client(JoinChannelRequest(str(link)))
         else:
             await client(LeaveChannelRequest(str(link)))
+        print('join')
     except:
         pass
 
