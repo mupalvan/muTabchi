@@ -72,9 +72,9 @@ async def moveMember(member, link):
                 ))
             except:
                 links = str(link).split("/")[-1]
-                print(links)
+                print("@"+links)
                 await client(AddChatUserRequest(
-                    links,
+                    "@"+links,
                     i, 
                     fwd_limit=10
                 ))
