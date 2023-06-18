@@ -54,23 +54,10 @@ async def getMember(link):
     try:
         links = linkmaker(link)
         await joinLeave(links[0], 0)
+        members = []
         async for user in client.iter_participants(link[0], limit=100):
-            print(user.id)
-        print("Done")
-            # try:
-            #     # await client(InvitechatToChannelRequest(
-            #     #     str(links[1]),
-            #     #     [user.id]
-            #     # ))
-            #     print("add {}".format(user.id))
-            # except Exception as e:
-            #     print('exc')
-            #     if (e.__class__.__name__ == "FloodWaitError"):
-            #         print('sleep', e.seconds)
-            #         await asyncio.sleep(e.seconds + 10)
-            #         continue
-            #     else:
-            #         continue
+            members.append(user.id)
+        return members
     except:
         pass
 
