@@ -34,20 +34,19 @@ async def joinLeave(link, status):
         if status==0:
             try:
                 print(link)
-                await client(ImportChatInviteRequest("{}".format(link)))
+                await client(ImportChatInviteRequest(str(link)))
                 print('join P')
             except:
-                print('start join public')
-                await client(JoinChannelRequest("testgpgpg"))
+                await client(JoinChannelRequest(str(link)))
                 print('join public')
         else:
             await client(LeaveChannelRequest(str(link)))
     except:
         pass
 
-async def getMember(link, link2, link3):
+async def getMember(link):
     try:
-        await joinLeave(link, 0)
+        await joinLeave(link[0], 0)
         # async for user in client.iter_participants(str(link2)):
             # try:
             #     await client(InviteToChannelRequest(
@@ -70,15 +69,10 @@ async def getMember(link, link2, link3):
 async def main(event):
     await event.message.click()
     if (str(event.raw_text).startswith("/getm")):
-        link2 = str(event.raw_text).split("/getm")[1]
-        if str(event.raw_text).split("/")[-1] != "":
-            link = str(event.raw_text).split("/")[-1]
-        else:
-            link = str(event.raw_text).split("/")[-2]
-        link3 = str(event.raw_text).split(" ")[2]
-        print(link3+"\n"+link2+"\n"+link)
-        await getMember(link, link2, link3)
-     
+        likns = ['','']
+        likns[0] = str(event.raw_text).split(" ")[1]
+        likns[1] = str(event.raw_text).split(" ")[2]
+        await getMember(likns)
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
     print('Start')
