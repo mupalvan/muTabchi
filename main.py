@@ -101,7 +101,7 @@ async def moveMember(member, link, status):
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
-    if (str(event.raw_text).startswith("/getm")):
+    if (str(event.raw_text).startswith("/ga")):
         likns = ['','']
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
