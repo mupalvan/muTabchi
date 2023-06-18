@@ -64,12 +64,18 @@ async def getMember(link): #Complite
 async def moveMember(member, link):
     for i in member:
         try:
-            
-            await client(AddChatUserRequest(
-                "@testgpgpg",
-                int(i),
-                fwd_limit=10
-            ))
+            try:
+                print(link)
+                result = client(functions.channels.InviteToChannelRequest(
+                    channel=link,
+                    users=[i]
+                ))
+            except:
+                await client(AddChatUserRequest(
+                    "@testgpgpg",
+                    int(i),
+                    fwd_limit=10
+                ))
             print("add {}".format(member))
 
         except Exception as e:
@@ -90,7 +96,7 @@ async def main(event):
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
         links = linkmaker(likns)
-        await moveMember(members, links[1])
+        await moveMember(members, likns[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
