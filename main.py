@@ -46,13 +46,14 @@ async def getMember(link, link2):
         await joinLeave(link, 0)
         async for user in client.iter_participants(str(link2)):
             try:
+                print('ssssssssssssssssss')
                 await client(InviteToChannelRequest(
                     '@testgpgpg',
                     [user.id]
                 ))
                 print("add {}".format(user.id))
             except:
-                pass
+                print("not {}".format(user.id))
     except:
         pass
 
