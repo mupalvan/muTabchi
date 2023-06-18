@@ -83,12 +83,13 @@ async def moveMember(member, link, status):
                 try:
                     await client(InviteToChannelRequest(
                             channel='@chantest789',
-                            users=[i]
+                            users=[2039361929]
                     ))
                     print("add {}".format(i))
+                    break
                 except:
                     pass
-                
+
         except Exception as e:
             print(e)
             if (e.__class__.__name__ == "FloodWaitError"):
