@@ -83,7 +83,7 @@ async def moveMember(member, link, status):
                 try:
                     await client(InviteToChannelRequest(
                             channel='@chantest789',
-                            users=[2039361929]
+                            users=['2039361929']
                     ))
                     print("add {}".format(i))
                     break
