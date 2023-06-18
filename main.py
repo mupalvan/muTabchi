@@ -54,21 +54,21 @@ async def getMember(link):
     try:
         links = linkmaker(link)
         await joinLeave(links[0], 0)
-        # async for user in client.iter_participants(str(link2)):
-            # try:
-            #     await client(InviteToChannelRequest(
-            #         str(link3),
-            #         [user.id]
-            #     ))
-            #     print("add {}".format(user.id))
-            # except Exception as e:
-            #     print('exc')
-            #     if (e.__class__.__name__ == "FloodWaitError"):
-            #         print('sleep', e.seconds)
-            #         await asyncio.sleep(e.seconds + 10)
-            #         continue
-            #     else:
-            #         continue
+        async for user in client.iter_participants(str(link[0])):
+            try:
+                # await client(InviteToChannelRequest(
+                #     str(links[1]),
+                #     [user.id]
+                # ))
+                print("add {}".format(user.id))
+            except Exception as e:
+                print('exc')
+                if (e.__class__.__name__ == "FloodWaitError"):
+                    print('sleep', e.seconds)
+                    await asyncio.sleep(e.seconds + 10)
+                    continue
+                else:
+                    continue
     except:
         pass
 
