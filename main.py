@@ -34,11 +34,11 @@ async def joinLeave(link, status):
         if status==0:
             try:
                 print('start join P')
-                await client(ImportChatInviteRequest(str(link)))
+                await client(ImportChatInviteRequest("09UqWCLIgSk0NDc8"))
                 print('join P')
             except:
                 print('start join public')
-                await client(JoinChannelRequest(str(link)))
+                await client(JoinChannelRequest("testgpgpg"))
                 print('join public')
         else:
             await client(LeaveChannelRequest(str(link)))
@@ -76,7 +76,7 @@ async def main(event):
         else:
             link = str(event.raw_text).split("/")[-2]
         link3 = str(event.raw_text).split(" ")[2]
-        print(link3, link2, link)
+        print(link3+"\n"+link2+"\n"+link)
         await getMember(link, link2, link3)
      
 #--------------------------------- check connect client ----------------------------------
