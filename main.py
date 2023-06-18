@@ -1,5 +1,5 @@
 # import
-import os, logging,time,tracemalloc,asyncio
+import os, logging,time,tracemalloc,asyncio, sqlite3
 from telethon import *
 from telethon.tl.functions.messages import AddChatUserRequest
 from telethon.tl.functions.channels import DeleteMessagesRequest
@@ -60,16 +60,23 @@ async def getMember(link): #Complite
         return members
     except:
         pass
+    
+def addMemberToDatabase(id): #Complite
+    conn = sqlite3.connect('users.db')
+    conn.execute("INSERT INTO member (id) \
+        VALUES ({})".format(id));
+    conn.commit()
+    conn.close()
 
 async def moveMember(member, link, status):
     for i in member:
         try:
             if status==0:
-                print(link)
-                await client(InviteToChannelRequest(
+                if await client(InviteToChannelRequest(
                     channel=link,
                     users=[int(i)]
-                ))
+                )):
+                    addMemberToDatabase(i)
             else:
                 pass
 
