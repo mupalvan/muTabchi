@@ -33,20 +33,28 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
-                print(link)
                 await client(ImportChatInviteRequest(str(link)))
-                print('join P')
             except:
                 await client(JoinChannelRequest(str(link)))
-                print('join public')
         else:
             await client(LeaveChannelRequest(str(link)))
     except:
         pass
 
+def linkmaker(link):
+    links = []
+    for i in link:
+        try:
+            links.append(str(i).split("+")[1])
+        except:
+            links.append(str(i).split("/")[-1])
+    return links
+
 async def getMember(link):
     try:
-        await joinLeave(link[0], 0)
+        links = linkmaker(link)
+        print(links)
+        await joinLeave(links[0], 0)
         # async for user in client.iter_participants(str(link2)):
             # try:
             #     await client(InviteToChannelRequest(
@@ -73,6 +81,7 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         await getMember(likns)
+        
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
     print('Start')
