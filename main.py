@@ -33,8 +33,8 @@ async def joinLeave(link, status):
     try:
         if status==0:
             try:
-                print('start join P')
-                await client(ImportChatInviteRequest("09UqWCLIgSk0NDc8"))
+                print(link)
+                await client(ImportChatInviteRequest("{}".format(link)))
                 print('join P')
             except:
                 print('start join public')
