@@ -104,6 +104,19 @@ async def moveMember(member, link): #Complite
                 continue
     print("--------- Complite ---------")   
 
+def dbToList(): #Complite
+    conn = sqlite3.connect('users.db')
+    cursor = conn.execute("SELECT id from member")
+    member = []
+    for row in cursor:
+        member.append(row[0])
+
+    conn.close()
+    return member
+
+async def addMemberFromDB(link): #Complite
+    moveMember(dbToList(), link)
+
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
@@ -114,6 +127,10 @@ async def main(event):
         members = await getMember(likns)
         await moveMember(members, likns[1])
 
+    elif (str(event.raw_text).startswith("/adb")):
+        link = str(event.raw_text).split(" ")[1]
+        addMemberFromDB(link)
+    
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
     print('Start')
