@@ -68,7 +68,7 @@ def addMemberToDatabase(id): #Complite
 async def getChatId(link): #Complite
     print(link)
     full = await client(GetFullChannelRequest(link))
-    chatId = full.chats[0].id
+    chatId = full.chats[:]
     return chatId
 
 async def moveMember(member, link, status):
@@ -79,11 +79,11 @@ async def moveMember(member, link, status):
     #     try:
     #         if status==0:
     #             try:
-    await client(AddChatUserRequest(
-        chat_id,
-        '@sisoc0',
-        fwd_limit=10  # Allow the user to see the 10 last messages
-    ))
+    # await client(AddChatUserRequest(
+    #     1985,
+    #     '@sisoc0',
+    #     fwd_limit=10  # Allow the user to see the 10 last messages
+    # ))
     #             except:
     #                 await client(InviteToChannelRequest(
     #                     channel="sisotest", 
