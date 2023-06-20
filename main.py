@@ -65,7 +65,7 @@ def addMemberToDatabase(id): #Complite
     except:
         pass
 
-async def getChatId(user):
+async def getChatId():
     full = await client(GetFullChannelRequest('sisotest'))
     print(full)
 
