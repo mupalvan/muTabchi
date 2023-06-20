@@ -67,12 +67,12 @@ def addMemberToDatabase(id): #Complite
         pass
 
 async def moveMember(member, link, status):
-    for i in member:
+    # for i in member:
         try:
             if status==0:
                 if await client(InviteToChannelRequest(
                     channel=link,
-                    users=[int(i)]
+                    users=[5548880104]
                 )):
                     addMemberToDatabase(i)
             else:
@@ -83,19 +83,21 @@ async def moveMember(member, link, status):
             if (e.__class__.__name__ == "FloodWaitError"):
                 print('sleep', e.seconds)
                 await asyncio.sleep(e.seconds + 10)
-                continue
+                pass
+                # continue
             else:
-                continue
+                pass
+                # continue
         
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
     if (str(event.raw_text).startswith("/ga")):
-        likns = ['','']
+        likns = ['',''] #link = https://.../../..
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         members = await getMember(likns)
-        links = linkmaker(likns)
+        links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         await moveMember(members, likns[1], 0)
 
 #--------------------------------- check connect client ----------------------------------
