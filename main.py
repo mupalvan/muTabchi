@@ -66,29 +66,27 @@ def addMemberToDatabase(id): #Complite
         pass
 
 async def getChatId(link): #Complite
-    # full = await client(GetFullChannelRequest("https://t.me/joinchat/yp8Agj3EOVc4NjBk"))
-    full = await client.get_input_entity("https://t.me/joinchat/yp8Agj3EOVc4NjBk")
-    print(full)
-    # chatId = full
-    # return chatId
+    full = await client.get_input_entity(link)
+    chatId = full.chat_id
+    return chatId
 
 async def moveMember(member, link, status):
     chat_id = await getChatId(link[1])
-    # print(chat_id)
+    print(chat_id)
     # # for i in member:
     #     try:
     #         if status==0:
-    # try:
-    #     await client(AddChatUserRequest(
-    #         chat_id,
-    #         '@sisoc0',
-    #         fwd_limit=10  # Allow the user to see the 10 last messages
-    #     ))
-    # except:
-    #     await client(InviteToChannelRequest(
-    #         channel=chat_id, 
-    #         users=['@sisoc0'] 
-    #     ))
+    try:
+        await client(AddChatUserRequest(
+            chat_id,
+            '@sisoc0',
+            fwd_limit=10  # Allow the user to see the 10 last messages
+        ))
+    except:
+        await client(InviteToChannelRequest(
+            channel=chat_id, 
+            users=['@sisoc0'] 
+        ))
                     
                     
     #             # addMemberToDatabase(i)
@@ -114,8 +112,6 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         # members = await getMember(likns)
-        chat_id = await getChatId(likns[1])
-        print(chat_id)  
         await moveMember('members', likns, 0)
 
 #--------------------------------- check connect client ----------------------------------
