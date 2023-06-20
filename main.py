@@ -70,6 +70,7 @@ async def moveMember(member, link, status):
     # for i in member:
         try:
             if status==0:
+                print("Move M------------------")
                 await client(InviteToChannelRequest(
                     channel="T80gGmfAzgtmNmM8", #link : https://.../../ss
                     users=['@sisoc0']
