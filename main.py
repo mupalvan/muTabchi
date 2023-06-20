@@ -76,20 +76,19 @@ async def getChatId(link): #Complite
 
 async def moveMember(member, link, status):
     chat_id = await getChatId(link)
-    print(chat_id)
     # # for i in member:
     #     try:
     #         if status==0:
     try:
         await client(AddChatUserRequest(
             chat_id,
-            '@sisoc0',
+            2039361929,
             fwd_limit=10  # Allow the user to see the 10 last messages
         ))
     except:
         await client(InviteToChannelRequest(
             channel=chat_id, 
-            users=['@sisoc0'] 
+            users=[2039361929] 
         ))
                     
                     
