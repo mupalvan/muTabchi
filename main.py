@@ -45,7 +45,7 @@ def linkmaker(link): #Complite
     return links
 
 async def checkLink(link):
-    result = await client(functions.messages.CheckChatInviteRequest(
+    result = await client(CheckChatInviteRequest(
         hash='sisotest'
     ))
     print(result)
