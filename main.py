@@ -72,8 +72,8 @@ async def moveMember(member, link, status):
             if status==0:
                 print("Move M------------------")
                 await client(InviteToChannelRequest(
-                    channel="T80gGmfAzgtmNmM8", #link : https://.../../ss
-                    users=['@sisoc0']
+                    channel="https://t.me/joinchat/T80gGmfAzgtmNmM8", 
+                    users=['@sisoc0'] 
                 ))
                 print("down")
                     # addMemberToDatabase(i)
