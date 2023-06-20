@@ -67,8 +67,9 @@ def addMemberToDatabase(id): #Complite
 
 async def getChatId(link): #Complite
     full = await client.get_input_entity(link)
-    chatId = full.chat_id
-    return chatId
+    chatId = full
+    print(chatId)
+    # return chatId
 
 async def moveMember(member, link, status):
     chat_id = await getChatId(link[1])
@@ -112,7 +113,8 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         # members = await getMember(likns)
-        await moveMember('members', likns, 0)
+        # await moveMember('members', likns, 0)
+        await getChatId(likns[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
