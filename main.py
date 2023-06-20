@@ -45,10 +45,10 @@ def linkmaker(link): #Complite
     return links
 
 async def checkLink(link):
-    result = client(functions.messages.CheckChatInviteRequest(
-        hash='A4LmkR23G0IGxBE71zZfo1'
+    result = await client(functions.messages.CheckChatInviteRequest(
+        hash='sisotest'
     ))
-    print(result.stringify())
+    print(result)
 
 async def getMember(link): #Complite
     try:
