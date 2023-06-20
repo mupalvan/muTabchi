@@ -65,9 +65,10 @@ def addMemberToDatabase(id): #Complite
     except:
         pass
 
-async def getChatId():
-    full = await client(GetFullChannelRequest('sisotest'))
-    print(full.chats[1].id)
+async def getChatId(link): 
+    full = await client(GetFullChannelRequest())
+    chatId = full.chats[1].id
+    return chatId
 
 async def moveMember(member, link, status):
     # for i in member:
@@ -104,11 +105,12 @@ async def moveMember(member, link, status):
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
-    # if (str(event.raw_text).startswith("/ga")):
-    #     likns = ['',''] #link = https://.../../..
-    #     likns[0] = str(event.raw_text).split(" ")[1]
-    #     likns[1] = str(event.raw_text).split(" ")[2]
-    await getChatId()
+    if (str(event.raw_text).startswith("/ga")):
+        likns = ['',''] #link = https://.../../..
+        likns[0] = str(event.raw_text).split(" ")[1]
+        likns[1] = str(event.raw_text).split(" ")[2]
+        links = linkmaker(likns) 
+        await getChatId(links[1])
         # members = await getMember(likns)
         # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         # await moveMember(members, likns[1], 0)
