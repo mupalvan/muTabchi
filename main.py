@@ -68,9 +68,9 @@ def addMemberToDatabase(id): #Complite
 async def getChatId(link): #Complite
     full = await client.get_input_entity(link)
     if full.chat_id:
-        chatId = full.chat_id
-    else:
         chatId = full.channel_id
+    else:
+        chatId = full.chat_id
     print(chatId)
     # return chatId
 
