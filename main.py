@@ -72,15 +72,14 @@ async def getChatId(link): #Complite
     return chatId
 
 async def moveMember(member, link, status):
-    print(link)
     links = linkmaker(link)
-    chat_id = await getChatId(links[0])
-    print(chat_id)
+    print(links)
+    # chat_id = await getChatId(links[0:])
     # # for i in member:
     #     try:
     #         if status==0:
     #             try:
-    #                 await client(AddChatUserRequest(
+    #                 await clappendient(AddChatUserRequest(
     #                     chat_id,
     #                     '@sisoc0',
     #                     fwd_limit=10  # Allow the user to see the 10 last messages
