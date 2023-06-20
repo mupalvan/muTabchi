@@ -74,7 +74,7 @@ async def getChatId(link): #Complite
     
     return chatId
 
-async def moveMember(member, link):
+async def moveMember(member, link): #Complite
     chat_id = await getChatId(link)
     for i in member:
         try:
