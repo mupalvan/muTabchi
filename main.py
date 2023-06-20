@@ -3,8 +3,8 @@ import os, logging,time,tracemalloc,asyncio, sqlite3
 from telethon import *
 from telethon.tl.functions.messages import AddChatUserRequest, CheckChatInviteRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
-from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.functions.channels import InviteToChannelRequest ,GetFullChannelRequest
+from telethon.tl.functions.messages import ImportChatInviteRequest 
+from telethon.tl.functions.channels import InviteToChannelRequest ,GetFullChannelRequest,GetGroupsForDiscussionRequest
 from telethon.tl.functions.messages import AddChatUserRequest
 
 #----------------------------------- logging --------------------------------------------
@@ -66,13 +66,15 @@ def addMemberToDatabase(id): #Complite
         pass
 
 async def getChatId(link): #Complite
-    full = await client(GetFullChannelRequest("https://t.me/joinchat/yp8Agj3EOVc4NjBk"))
-    chatId = full
-    return chatId
+    # full = await client(GetFullChannelRequest("https://t.me/joinchat/yp8Agj3EOVc4NjBk"))
+    full = await client.get_input_entity("https://t.me/joinchat/yp8Agj3EOVc4NjBk")
+    print(full)
+    # chatId = full
+    # return chatId
 
 async def moveMember(member, link, status):
     chat_id = await getChatId(link[1])
-    print(chat_id)
+    # print(chat_id)
     # # for i in member:
     #     try:
     #         if status==0:
