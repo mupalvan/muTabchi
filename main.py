@@ -73,6 +73,7 @@ async def getChatId(link): #Complite
 
 async def moveMember(member, link, status):
     chat_id = await getChatId(link[1])
+    print(chat_id)
     # # for i in member:
     #     try:
     #         if status==0:
