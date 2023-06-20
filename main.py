@@ -74,22 +74,23 @@ async def getChatId(link): #Complite
     # return chatId
 
 async def moveMember(member, link, status):
-    print(link)
-    chat_id = await getChatId(link[1])
+    links = linkmaker(link)
+    print(links)
+    # chat_id = await getChatId(link[1])
     # # for i in member:
     #     try:
     #         if status==0:
-    try:
-        await client(AddChatUserRequest(
-            chat_id,
-            '@sisoc0',
-            fwd_limit=10  # Allow the user to see the 10 last messages
-        ))
-    except:
-        await client(InviteToChannelRequest(
-            channel=chat_id, 
-            users=['@sisoc0'] 
-        ))
+    # try:
+    #     await client(AddChatUserRequest(
+    #         chat_id,
+    #         '@sisoc0',
+    #         fwd_limit=10  # Allow the user to see the 10 last messages
+    #     ))
+    # except:
+    #     await client(InviteToChannelRequest(
+    #         channel=chat_id, 
+    #         users=['@sisoc0'] 
+    #     ))
                     
                     
     #             # addMemberToDatabase(i)
