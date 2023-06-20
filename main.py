@@ -75,6 +75,7 @@ async def moveMember(member, link, status):
                     channel="T80gGmfAzgtmNmM8", #link : https://.../../ss
                     users=['@sisoc0']
                 ))
+                print("down")
                     # addMemberToDatabase(i)
             else:
                 pass
