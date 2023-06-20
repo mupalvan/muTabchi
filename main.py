@@ -74,38 +74,34 @@ async def getChatId(link): #Complite
     
     return chatId
 
-async def moveMember(member, link, status):
+async def moveMember(member, link):
     chat_id = await getChatId(link)
-    # # for i in member:
-    #     try:
-    #         if status==0:
-    try:
-        await client(AddChatUserRequest(
-            chat_id,
-            6108506516,
-            fwd_limit=10  # Allow the user to see the 10 last messages
-        ))
-    except:
-        await client(InviteToChannelRequest(
-            channel=chat_id, 
-            users=[6108506516] 
-        ))
-                    
-                    
-    #             # addMemberToDatabase(i)
-    #         else:
-    #             pass
+    for i in member:
+        try:
+            try:
+                await client(AddChatUserRequest(
+                    chat_id,
+                    6108506516,
+                    fwd_limit=10  # Allow the user to see the 10 last messages
+                ))
+            except:
+                await client(InviteToChannelRequest(
+                    channel=chat_id, 
+                    users=[6108506516] 
+                ))
 
-    #     except Exception as e:
-    #         print(e)
-    #         if (e.__class__.__name__ == "FloodWaitError"):
-    #             print('sleep', e.seconds)
-    #             await asyncio.sleep(e.seconds + 10)
-    #             pass
-    #             # continue
-    #         else:
-    #             pass
-    #             # continue
+            addMemberToDatabase(i)
+            time.sleep(5)
+            print("add {}".format(i))
+
+        except Exception as e:
+            print(e)
+            if (e.__class__.__name__ == "FloodWaitError"):
+                print('sleep', e.seconds)
+                await asyncio.sleep(e.seconds + 10)
+                continue
+            else:
+                continue
         
 @client.on(events.NewMessage)
 async def main(event):
@@ -114,8 +110,8 @@ async def main(event):
         likns = ['',''] #link = https://.../../..
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
-        # members = await getMember(likns)
-        await moveMember('members', likns[1], 0)
+        members = await getMember(likns)
+        await moveMember(members, likns[1])
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
