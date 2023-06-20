@@ -68,7 +68,7 @@ def addMemberToDatabase(id): #Complite
 async def getChatId(link): #Complite
     print(link)
     full = await client(GetFullChannelRequest(link))
-    chatId = list(full.chats)
+    chatId = full.chats[-1].id
     return chatId
 
 async def moveMember(member, link, status):
