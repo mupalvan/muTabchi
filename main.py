@@ -103,7 +103,7 @@ async def moveMember(member, link): #Complite
             else:
                 continue
     print("--------- Complite ---------")   
-    
+
 @client.on(events.NewMessage)
 async def main(event):
     await event.message.click()
