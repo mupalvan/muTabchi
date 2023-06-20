@@ -110,7 +110,8 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         links = linkmaker(likns) 
-        await getChatId(links[1])
+        ch = await getChatId(links[1])
+        print(ch)
         # members = await getMember(likns)
         # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         # await moveMember(members, likns[1], 0)
