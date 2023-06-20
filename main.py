@@ -79,11 +79,11 @@ async def moveMember(member, link, status):
     #     try:
     #         if status==0:
     #             try:
-    #                 await clappendient(AddChatUserRequest(
-    #                     chat_id,
-    #                     '@sisoc0',
-    #                     fwd_limit=10  # Allow the user to see the 10 last messages
-    #                 ))
+    await client(AddChatUserRequest(
+        chat_id,
+        '@sisoc0',
+        fwd_limit=10  # Allow the user to see the 10 last messages
+    ))
     #             except:
     #                 await client(InviteToChannelRequest(
     #                     channel="sisotest", 
