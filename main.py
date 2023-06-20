@@ -129,7 +129,7 @@ async def main(event):
 
     elif (str(event.raw_text).startswith("/adb")):
         link = str(event.raw_text).split(" ")[1]
-        addMemberFromDB(link)
+        await addMemberFromDB(link)
     
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
