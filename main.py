@@ -72,6 +72,7 @@ async def getChatId(link): #Complite
     return chatId
 
 async def moveMember(member, link, status):
+    print(link)
     links = linkmaker(link)
     chat_id = await getChatId(links[0])
     print(chat_id)
