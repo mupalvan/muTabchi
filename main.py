@@ -115,7 +115,7 @@ def dbToList(): #Complite
     return member
 
 async def addMemberFromDB(link): #Complite
-    moveMember(dbToList(), link)
+    await moveMember(dbToList(), link)
 
 @client.on(events.NewMessage)
 async def main(event):
