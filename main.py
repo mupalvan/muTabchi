@@ -1,8 +1,7 @@
 # import
 import os, logging,time,tracemalloc,asyncio, sqlite3
 from telethon import *
-from telethon.tl.functions.messages import AddChatUserRequest
-from telethon.tl.functions.channels import DeleteMessagesRequest
+from telethon.tl.functions.messages import AddChatUserRequest, CheckChatInviteRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.channels import InviteToChannelRequest 
@@ -45,6 +44,12 @@ def linkmaker(link): #Complite
             links.append(str(i).split("/")[-1])
     return links
 
+async def checkLink(link):
+    result = await client(CheckChatInviteRequest(
+        hash='{}'.format(link)
+    ))
+    print(result)
+
 async def getMember(link): #Complite
     try:
         links = linkmaker(link)
@@ -71,11 +76,11 @@ async def moveMember(member, link, status):
         try:
             if status==0:
                 print("Move M------------------")
-                # await client(AddChatUserRequest(
-                #     822874198,
-                #     '@sisoc0',
-                #     fwd_limit=10  # Allow the user to see the 10 last messages
-                # ))
+                await client(AddChatUserRequest(
+                    822874198,
+                    '@sisoc0',
+                    fwd_limit=10  # Allow the user to see the 10 last messages
+                ))
                 await client(InviteToChannelRequest(
                     channel="sisotest", 
                     users=['@sisoc0'] 
@@ -103,9 +108,12 @@ async def main(event):
         likns = ['',''] #link = https://.../../..
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
-        members = await getMember(likns)
-        links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
-        await moveMember(members, likns[1], 0)
+        print(checkLink(likns[0]))
+        print("\n")
+        print(checkLink(likns[1]))
+        # members = await getMember(likns)
+        # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
+        # await moveMember(members, likns[1], 0)
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
