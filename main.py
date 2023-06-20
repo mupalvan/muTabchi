@@ -72,7 +72,7 @@ async def moveMember(member, link, status):
             if status==0:
                 print("Move M------------------")
                 await client(AddChatUserRequest(
-                    "https://t.me/joinchat/T80gGmfAzgtmNmM8",
+                    "T80gGmfAzgtmNmM8",
                     '@sisoc0',
                     fwd_limit=10  # Allow the user to see the 10 last messages
                 ))
