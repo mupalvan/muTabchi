@@ -66,7 +66,7 @@ def addMemberToDatabase(id): #Complite
         pass
 
 async def getChatId(link): #Complite
-    full = await client(GetFullChannelRequest(link))
+    full = await client(GetFullChannelRequest("https://t.me/joinchat/yp8Agj3EOVc4NjBk"))
     chatId = full
     return chatId
 
@@ -112,6 +112,8 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         # members = await getMember(likns)
+        chat_id = await getChatId(likns[1])
+        print(chat_id)  
         await moveMember('members', likns, 0)
 
 #--------------------------------- check connect client ----------------------------------
