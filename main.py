@@ -81,13 +81,13 @@ async def moveMember(member, link):
             try:
                 await client(AddChatUserRequest(
                     chat_id,
-                    6108506516,
+                    i,
                     fwd_limit=10  # Allow the user to see the 10 last messages
                 ))
             except:
                 await client(InviteToChannelRequest(
                     channel=chat_id, 
-                    users=[6108506516] 
+                    users=[i] 
                 ))
 
             addMemberToDatabase(i)
