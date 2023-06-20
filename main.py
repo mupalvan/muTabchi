@@ -71,12 +71,11 @@ async def getChatId(link): #Complite
         chatId = full.chat_id
     except:
         chatId = full.channel_id
-        
-    print(chatId)
-    # return chatId
+    
+    return chatId
 
 async def moveMember(member, link, status):
-    chat_id = await getChatId(link[1])
+    chat_id = await getChatId(link)
     print(chat_id)
     # # for i in member:
     #     try:
@@ -117,8 +116,7 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         # members = await getMember(likns)
-        # await moveMember('members', likns, 0)
-        await getChatId(likns[1])
+        await moveMember('members', likns[1], 0)
 
 #--------------------------------- check connect client ----------------------------------
 if client.is_connected():
