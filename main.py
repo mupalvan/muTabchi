@@ -67,8 +67,8 @@ def addMemberToDatabase(id): #Complite
 
 async def getChatId():
     full = await client(GetFullChannelRequest('sisotest'))
-    print(full.chat)
-    chatId = full.chat.id
+    print(full.Chat)
+    chatId = full.Chat.id
     print(chatId)
 async def moveMember(member, link, status):
     # for i in member:
