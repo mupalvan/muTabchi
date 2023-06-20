@@ -71,10 +71,15 @@ async def moveMember(member, link, status):
         try:
             if status==0:
                 print("Move M------------------")
-                await client(InviteToChannelRequest(
-                    channel="https://t.me/joinchat/T80gGmfAzgtmNmM8", 
-                    users=['@sisoc0'] 
+                await client(AddChatUserRequest(
+                    "https://t.me/joinchat/T80gGmfAzgtmNmM8",
+                    '@sisoc0',
+                    fwd_limit=10  # Allow the user to see the 10 last messages
                 ))
+                # await client(InviteToChannelRequest(
+                #     channel="https://t.me/joinchat/T80gGmfAzgtmNmM8", 
+                #     users=['@sisoc0'] 
+                # ))
                 print("down")
                     # addMemberToDatabase(i)
             else:
