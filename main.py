@@ -108,9 +108,9 @@ async def main(event):
         likns = ['',''] #link = https://.../../..
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
-        print(await checkLink(likns[0]))
+        await checkLink(likns[0])
         print("\n")
-        print(await checkLink(likns[1]))
+        await checkLink(likns[1])
         # members = await getMember(likns)
         # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         # await moveMember(members, likns[1], 0)
