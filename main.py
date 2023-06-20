@@ -44,7 +44,7 @@ def linkmaker(link): #Complite
             links.append(str(i).split("/")[-1])
     return links
 
-async def checkLink(link):
+def checkLink(link):
     result = client(CheckChatInviteRequest(
         hash='sisotest'
     ))
@@ -109,9 +109,9 @@ async def main(event):
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
         links = linkmaker(likns)
-        await checkLink(links[0])
-        print("\n")
-        await checkLink(links[1])
+        checkLink(links[0])
+        # print("\n")
+        # checkLink(links[1])
         # members = await getMember(likns)
         # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         # await moveMember(members, likns[1], 0)
