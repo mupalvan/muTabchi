@@ -72,7 +72,7 @@ async def moveMember(member, link, status):
             if status==0:
                 if await client(InviteToChannelRequest(
                     channel=link,
-                    users=[5548880104]
+                    users=['5548880104']
                 )):
                     addMemberToDatabase(i)
             else:
