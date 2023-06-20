@@ -4,7 +4,7 @@ from telethon import *
 from telethon.tl.functions.messages import AddChatUserRequest, CheckChatInviteRequest
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.functions.channels import InviteToChannelRequest 
+from telethon.tl.functions.channels import InviteToChannelRequest ,GetFullChannelRequest
 from telethon.tl.functions.messages import AddChatUserRequest
 
 #----------------------------------- logging --------------------------------------------
@@ -44,12 +44,6 @@ def linkmaker(link): #Complite
             links.append(str(i).split("/")[-1])
     return links
 
-def checkLink(link):
-    result = client(CheckChatInviteRequest(
-        hash='sisotest'
-    ))
-    print(result)
-
 async def getMember(link): #Complite
     try:
         links = linkmaker(link)
@@ -71,22 +65,28 @@ def addMemberToDatabase(id): #Complite
     except:
         pass
 
+async def getChatId(user):
+    full = await client(GetFullChannelRequest('sisotest'))
+    print(full)
+
 async def moveMember(member, link, status):
     # for i in member:
         try:
             if status==0:
-                print("Move M------------------")
-                await client(AddChatUserRequest(
-                    822874198,
-                    '@sisoc0',
-                    fwd_limit=10  # Allow the user to see the 10 last messages
-                ))
-                await client(InviteToChannelRequest(
-                    channel="sisotest", 
-                    users=['@sisoc0'] 
-                ))
-                print("down")
-                    # addMemberToDatabase(i)
+                try:
+                    await client(AddChatUserRequest(
+                        822874198,
+                        '@sisoc0',
+                        fwd_limit=10  # Allow the user to see the 10 last messages
+                    ))
+                except:
+                    await client(InviteToChannelRequest(
+                        channel="sisotest", 
+                        users=['@sisoc0'] 
+                    ))
+                    
+                    
+                # addMemberToDatabase(i)
             else:
                 pass
 
@@ -108,10 +108,7 @@ async def main(event):
         likns = ['',''] #link = https://.../../..
         likns[0] = str(event.raw_text).split(" ")[1]
         likns[1] = str(event.raw_text).split(" ")[2]
-        links = linkmaker(likns)
-        checkLink(links[0])
-        # print("\n")
-        # checkLink(links[1])
+        await getChatId()
         # members = await getMember(likns)
         # links = linkmaker(likns) #link : https://.../../ss ----> links = ss 
         # await moveMember(members, likns[1], 0)
