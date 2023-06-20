@@ -5,5 +5,7 @@ cursor = conn.execute("SELECT id from member")
 member = []
 for row in cursor:
     member.append(row[0])
-print(member)
+    
+new_list = [item.strip() for item in member]
+print(new_list)
 conn.close()

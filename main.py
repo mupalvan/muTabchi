@@ -14,7 +14,7 @@ tracemalloc.start()
 #---------------------------- set info acc ----------------------------------------------
 api_id = 1331656
 api_hash = '868c8254ed0fbc05a5ef0dab474ffdf9'
-phone_number = '+989923162636'
+phone_number = '+989330362596'
 #------------------------------ connect client ------------------------------------------
 if not os.path.exists('session'):
     os.makedirs('session')
